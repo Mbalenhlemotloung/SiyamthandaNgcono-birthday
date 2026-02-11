@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Siyamthanda</title>
+<style>
+body{
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(135deg,#f9c5d1,#ffe6f0);
+  text-align:center;
+  padding:20px;
+  overflow-x:hidden;
+}
+
+h1{color:#ff4d6d;margin-bottom:5px;}
+
+.clan{
+  font-size:1rem;
+  color:#555;
+  margin-bottom:15px;
+}
+
+.profile-img{
+  width:160px;
+  height:160px;
+  border-radius:50%;
+  object-fit:cover;
+  border:4px solid #fff;
+  box-shadow:0 5px 15px rgba(0,0,0,.2);
+  margin-bottom:20px;
+}
+
+button{
+  background:#ff4d6d;
+  color:#fff;
+  border:none;
+  padding:12px 25px;
+  border-radius:8px;
+  font-size:16px;
+  margin:5px;
+  cursor:pointer;
+}
+button:hover{opacity:.9;}
+
+.hidden{display:none;}
+
+.popup{
+  background:rgba(255,255,255,.95);
+  border-radius:12px;
+  padding:20px;
+  box-shadow:0 5px 15px rgba(0,0,0,.2);
+  max-width:400px;
+  margin:20px auto;
+}
+
+.confetti{
+  position:fixed;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  top:-10px;
+  animation:fall 3s linear infinite;
+  z-index:9999;
+}
+@keyframes fall{
+  to{transform:translateY(100vh) rotate(360deg);opacity:0;}
+}
+
+.balloon{
+  position:fixed;
+  top:-120px;
+  width:48px;
+  height:60px;
+  border-radius:50% 50% 48% 48%;
+  animation:floatMiddle linear forwards;
+  z-index:9998;
+  box-shadow:inset -5px -10px rgba(255,255,255,.3);
+}
+
+.balloon::after{
+  content:'';
+  position:absolute;
+  width:10px;
+  height:6px;
+  background:inherit;
+  bottom:-4px;
+  left:50%;
+  transform:translateX(-50%) rotate(45deg);
+}
+
+@keyframes floatMiddle{
+  0%{
+    transform:translateY(0) translateX(0);
+    opacity:1;
+  }
+  50%{
+    transform:translateY(25vh) translateX(15px);
+  }
+  100%{
+    transform:translateY(50vh) translateX(-15px);
+    opacity:0;
+  }
+}
+
+.authors-message{
+  background:#fff3f8;
+  padding:40px 20px;
+  border-radius:12px;
+  max-width:800px;
+  margin:40px auto;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
+  text-align:left;
+}
+.authors-message h2{
+  text-align:center;
+  color:#ff4d6d;
+}
+
+.carousel{
+  height:250px;
+  overflow:hidden;
+  border-radius:12px;
+  margin:20px 0;
+  position:relative;
+}
+.carousel img{
+  position:absolute;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0;
+  transition:opacity 1s;
+}
+.carousel img.active{opacity:1;}
+
+.lyrics{
+  background:#fff0f5;
+  border-radius:12px;
+  padding:20px;
+  max-width:700px;
+  margin:20px auto;
+  color:#ff4d6d;
+  min-height:200px;
+}
+
+.birthday-countdown{
+  background:linear-gradient(135deg,#ffdde5,#fff);
+  border-radius:16px;
+  padding:30px 20px;
+  margin-top:40px;
+  box-shadow:0 10px 30px rgba(0,0,0,.1);
+}
+
+.countdown-box{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  flex-wrap:wrap;
+  margin-top:20px;
+}
+
+.countdown-card{
+  background:#fff;
+  border-radius:14px;
+  padding:15px 20px;
+  min-width:100px;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  animation:pulse 1.5s infinite alternate;
+}
+
+.countdown-card span{
+  display:block;
+  font-size:28px;
+  font-weight:700;
+  color:#ff4d6d;
+}
+
+.countdown-card small{
+  color:#888;
+  font-size:14px;
+  text-transform:uppercase;
+}
+
+@keyframes pulse{
+  from{transform:scale(1);}
+  to{transform:scale(1.05);}
+}
+</style>
+</head>
+
+<body>
+
+<h1>Happy Birthday Siyamthanda</h1>
+<div class="clan">Ngcobo · Maqadi</div>
+
+<p>Clan Names</p>
+<audio controls>
+  <source src="music/y2mate.com-NgcoboIzithakazelo-zakwa-NGCOBO-NGCOBO-CLAN-PRAISES-1-1.mp3" type="audio/mpeg">
+</audio>
+
+<br><br>
+
+<img src="images/siyamthanda.jpeg" class="profile-img" alt="Siyamthanda">
+
+<p>Do you know her?</p>
+<button onclick="knowSiya(true)">Yes, I know her</button>
+<button onclick="knowSiya(false)">No, I don’t know her</button>
+
+<div id="popup" class="popup hidden"></div>
+
+<div id="messageForm" class="hidden">
+  <p>Write your birthday message:</p>
+  <textarea id="userMessage" rows="4" style="width:80%"></textarea><br><br>
+  <button onclick="sendMessage()">Send via WhatsApp</button>
+</div>
+
+<section class="authors-message">
+  <h2>From the Heart</h2>
+
+  <div class="carousel">
+    <img src="images/siyamthanda.jpeg" class="active">
+    <img src="images/siyamthanda2 (1).jpeg">
+    <img src="images/siyamthanda2 (2).jpeg">
+  </div>
+
+  <p><b>Clan:</b> Ngcob' omhlophe · Mapholoba · Mashiy'a amahle</p>
+  <p><b>Roomzah:</b> Happy Birthday Sisi, Ukhule uhloniphe umhlaba njengoba uzihlonipha nawe. Ngiyakuthanda deputy Parent yami yase Kapa... May we never forget the memories we shared together as we grow old . Ukhule uze ukhokhobe bekuphushe ngebhala ntombi enhle. </p>
+  <p><b>Wish:</b> May your dreams unfold gently and powerfully.</p>
+</section>
+
+<p>Birthday Song</p>
+<audio controls loop>
+  <source src="music/Mas Musiq - Watermelon Feat. Daliwonga (Official Audio).mp3" type="audio/mpeg">
+</audio>
+
+<section class="lyrics" id="lyrics">
+Birthday Song for Siyamthanda<br><br>
+</section>
+
+<section class="birthday-countdown">
+  <h2>Birthday Countdown</h2>
+  <p id="todayDate"></p>
+
+  <div class="countdown-box">
+    <div class="countdown-card">
+      <span id="days">0</span><small>Days</small>
+    </div>
+    <div class="countdown-card">
+      <span id="hours">0</span><small>Hours</small>
+    </div>
+    <div class="countdown-card">
+      <span id="minutes">0</span><small>Minutes</small>
+    </div>
+    <div class="countdown-card">
+      <span id="seconds">0</span><small>Seconds</small>
+    </div>
+  </div>
+</section>
+
+<script>
+const phoneNumber = '27831234567';
+
+function launchConfetti(){
+  for(let i=0;i<40;i++){
+    const c=document.createElement("div");
+    c.className="confetti";
+    c.style.left=Math.random()*100+"vw";
+    c.style.background=`hsl(${Math.random()*360},70%,60%)`;
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),3000);
+  }
+}
+
+function launchBalloons(){
+  const colors=['#ff4d6d','#ff9aa2','#ffd1dc','#ffc6ff','#cdb4db'];
+  for(let i=0;i<18;i++){
+    const b=document.createElement("div");
+    b.className="balloon";
+    b.style.left=Math.random()*100+"vw";
+    b.style.background=colors[Math.floor(Math.random()*colors.length)];
+    b.style.animationDuration=(Math.random()*4+6)+"s";
+    b.style.animationDelay=(Math.random()*1)+"s";
+    document.body.appendChild(b);
+    setTimeout(()=>b.remove(),8000); 
+  }
+}
+
+function knowSiya(yes){
+  const popup=document.getElementById("popup");
+  const form=document.getElementById("messageForm");
+  popup.classList.remove("hidden");
+
+  launchConfetti();
+  launchBalloons();
+
+  if(yes){
+    popup.innerHTML="Welcome. Please leave a birthday message below.";
+    form.classList.remove("hidden");
+  }else{
+    popup.innerHTML="She is Siyamthanda Lwanele Ngcobo, born on 12 February.";
+    form.classList.add("hidden");
+  }
+}
+
+function sendMessage(){
+  const msg=document.getElementById("userMessage").value.trim();
+  if(!msg) return alert("Please type a message first.");
+  window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(msg)}`,"_blank");
+}
+
+let i=0;
+const imgs=document.querySelectorAll(".carousel img");
+setInterval(()=>{
+  imgs.forEach(img=>img.classList.remove("active"));
+  imgs[i].classList.add("active");
+  i=(i+1)%imgs.length;
+},3000);
+
+function updateCountdown(){
+  const now=new Date();
+  document.getElementById("todayDate").innerText=now.toDateString();
+
+  let year=now.getFullYear();
+  let birthday=new Date(`February 12, ${year} 00:00:00`);
+  if(now>birthday) birthday.setFullYear(year+1);
+
+  const diff=birthday-now;
+  document.getElementById("days").innerText=Math.floor(diff/86400000);
+  document.getElementById("hours").innerText=Math.floor(diff/3600000)%24;
+  document.getElementById("minutes").innerText=Math.floor(diff/60000)%60;
+  document.getElementById("seconds").innerText=Math.floor(diff/1000)%60;
+}
+setInterval(updateCountdown,1000);
+updateCountdown();
+
+const lyricsText=`
+Yemamama, yemamama, yemamama
+Yemamama, yemamama, yemamama, yemamama
+Isitha somuntu yinhliziyo
+Ngitshele ke mama ngikuthande kanjani yoh
+Lunzima uthando, inzima impilo
+Ngizowathatha ama-chance noma ngingena-million
+Wena uyi-watermelon, amanzi wempilo
+Woza nenkinga zakho mama, ngizokuthanda nazo iyo
+Noma zingaki, noma zingaki yoo
+Ngizokunika konke, ngizokunika yonke into
+Ngizokuthanda ngamandla manje, ayi ngiyongena ngamandla manje
+Ngizokuthanda ngamandla manje, ngizongena ngena ngamandla manje
+Ngizokuthanda ngamandla maje, ngizongena ngena ngamandla manje
+Ngizokuthanda ngamandla maje, ngizongena ngena ngamandla manje
+Yemamama, yemamama, yemamama, yemama yeyi
+Yeamamama, yemamama, yemamama, yemamama
+Yemamama, yemamama, yemamama, yemama yeyi
+Yeamamama, yemamama, yemamama, yemamama
+Yema, eyi, ohm, yea, yema, eyi, ohm, yea, yema, eyi, ohm, yea, yema, eyi, ohm, yea
+Yema, eyi, ohm, yea, yema, eyi, ohm, yea, yema, eyi, ohm, yea, yema, eyi, ohm, yea
+Oh mamama, oh mama, oh mamama, oh mama
+Oh mamama, oh mama, oh mamama, oh mama
+Oh mamama, oh mama
+Wena uyi-watermelon, amanzi wempilo
+Woza nenkinga zakho mama, ngizokuthanda nazo iyo
+Noma zingaki, noma zingaki yoo
+Ngizokunika konke, ngizokunika yonke into
+Ngizokuthanda ngamandla manje, ayi ngiyongena ngamandla manje
+Ngizokuthanda ngamandla manje, ngizongena ngena ngamandla manje
+Ngizokuthanda ngamandla manje, ngizongena ngena ngamandla manje
+Ngizokuthanda ngamandla manje, ngizongena ngena ngamandla manje
+Yema, eyi, ohm, yea, yema, eyi, ohm, yea, yema, eyi, ohm, yea
+Yema, eyi, ohm, yea, yema, eyi, ohm, yea, yema, eyi, ohm, yea
+Yema, eyi, ohm, yea, yema, eyi, ohm, yea, yema, eyi, ohm, yea
+Yema, eyi, ohm, yea, yema, eyi, ohm, yea, yema, eyi, ohm, yea
+Yema, eyi, ohm, yea, yema, eyi, ohm, yea, yema, eyi, ohm, yea
+Yema, eyi, ohm, yea
+`;
+const lyricLines=lyricsText.trim().split("\n");
+let l=0;
+setInterval(()=>{
+  if(l<lyricLines.length){
+    document.getElementById("lyrics").innerHTML+=lyricLines[l]+"<br>";
+    l++;
+  }
+},3000);
+</script>
+
+</body>
+</html>
